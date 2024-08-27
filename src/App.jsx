@@ -3,6 +3,7 @@ import { HomePage } from "./Pages/Home";
 import { AboutPage } from "./Pages/About";
 import { Router } from "./Router";
 import { Page404 } from "./Pages/404";
+import { Route } from "./Route";
 
 const routes = [
   {
@@ -15,7 +16,7 @@ const routes = [
   },
   {
     path: '/search/:query',
-    component: () => <h1>Buscador</h1>
+    component: ({routeParams}) => <h1>Buscador {routeParams.query}</h1>
   }
 ]
 
@@ -23,7 +24,10 @@ const routes = [
 function App() {
   return (
    <main>
-    <Router routes={routes} defaultComponent={Page404} />
+    <Router routes={routes} defaultComponent={Page404} >
+      <Route path={'/'} component={HomePage} />
+      <Route path={'/about'} component={AboutPage} />
+    </Router>
    </main>
   )
 }

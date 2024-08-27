@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { Children, useEffect, useState } from "react";
 import { EVENTS } from "./const";
 import { match } from "path-to-regexp";
 
-export const Router = ({routes = [], defaultComponent: DefaultComponent = () => <h1>404</h1> }) => {
+export const Router = ({children, routes = [], defaultComponent: DefaultComponent = () => <h1>404</h1> }) => {
+  console.log(children);
+  
     const [currentPath, setCurrentPath] = useState(window.location.pathname);
   
     useEffect(()=>{
@@ -19,8 +21,17 @@ export const Router = ({routes = [], defaultComponent: DefaultComponent = () => 
     },[])
 
     let routeParams = {}
+
+    const routesFromChildren = Children.map(children, ({props,type}) => {
+      const {name} = type
+      const isRoute = name === 'Route'
+
+      return isRoute ? props : null
+    })
+  console.log('routesFromChildren:', routesFromChildren);
+  const RoutesToUse = routes.concat(routesFromChildren)
   
-    const Page = routes.find(({path}) => {
+    const Page = RoutesToUse.find(({path}) => {
        if (path === currentPath) return true 
        //path-to-regex para detectar rutas dinamicas
        //search/:query <- :query seria la ruta dinamica

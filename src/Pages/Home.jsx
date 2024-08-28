@@ -1,9 +1,7 @@
-import { Link } from "../Link"
+import { Link } from "../components/Link"
 
 
-
-
-export const HomePage = () =>{
+export default function HomePage  () {
     return(
       <>
       <h1>Home</h1>

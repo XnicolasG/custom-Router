@@ -1,5 +1,5 @@
 import { Children, useEffect, useState } from "react";
-import { EVENTS } from "../const";
+import { EVENTS } from "../utils/const";
 import { match } from "path-to-regexp";
 import { getCurrentPath } from "../utils/getCurrentPath";
 

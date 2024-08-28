@@ -22,6 +22,7 @@ describe('Router', () => {
         render(<Router routes={[]} defaultComponent={() => <h1>404</h1>} />)
         expect(screen.getByText('404')).toBeTruthy()
     })
+    // mockReturnValueOnce no lo esta reconociendo
     // it('should navigate using Link', async() => {
     //     getCurrentPath.mockReturnValueOnce('/')
     //     render(
